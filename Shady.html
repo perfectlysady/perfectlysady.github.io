@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffffff">
+<meta name="color-scheme" content="light">
+<title>Shady</title>
+<meta name="description" content="Shady’s home card: a self-taught dev’s Git repositories and where to find them.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:light;--paper:#fff;--ink:#000;--desk:#c4c4c4;--pix:"Pixelify Sans",ui-monospace,Menlo,Consolas,monospace}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:12px}
+body{margin:0;min-height:100vh;background:var(--desk);color:var(--ink);font:400 17px/1.5 var(--pix);-webkit-text-size-adjust:100%;-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+::selection{background:var(--ink);color:var(--paper)}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.strip a:focus-visible{outline-color:var(--paper)}
+.ic{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.bezel{position:fixed;inset:0;z-index:50;pointer-events:none;background:radial-gradient(circle at 100% 100%,transparent 11px,#000 12px) 0 0/12px 12px no-repeat,radial-gradient(circle at 0 100%,transparent 11px,#000 12px) 100% 0/12px 12px no-repeat,radial-gradient(circle at 100% 0,transparent 11px,#000 12px) 0 100%/12px 12px no-repeat,radial-gradient(circle at 0 0,transparent 11px,#000 12px) 100% 100%/12px 12px no-repeat}
+.desk{position:relative;z-index:2;display:grid;justify-items:center;align-content:start;gap:24px;min-height:100vh;min-height:100dvh;padding:calc(env(safe-area-inset-top,0px) + 28px) 14px calc(env(safe-area-inset-bottom,0px) + 44px)}
+.win{width:min(760px,100%);background:var(--ink);border:2px solid var(--ink);border-radius:6px;overflow:hidden;box-shadow:3px 3px 0 var(--ink)}
+.tbar{display:grid;grid-template-columns:14px 1fr 14px;align-items:center;gap:10px;height:32px;padding:0 10px;background:var(--paper);border-bottom:2px solid var(--ink)}
+.tbar::after{content:""}
+.ttl{display:flex;align-items:center;gap:10px;margin:0;color:var(--ink);font:600 16px/1 var(--pix);white-space:nowrap}
+.ttl::before,.ttl::after{content:"";flex:1;height:10px;background:repeating-linear-gradient(var(--ink) 0 2px,transparent 2px 4px)}
+.close{width:14px;height:14px;border:2px solid var(--ink);background:var(--paper)}
+.body{display:grid;gap:10px;padding:12px}
+.tile{--a:var(--paper);--b:var(--ink);background:var(--a);color:var(--b);border-radius:6px;box-shadow:inset 0 0 0 2px var(--a),inset 0 0 0 4px var(--b)}
+.fig{position:relative;display:grid;place-items:center;padding:16px}
+.sprite{display:block;margin:0;padding:6px;border:0;appearance:none;-webkit-appearance:none;touch-action:manipulation;border-radius:4px;background:conic-gradient(var(--ink) 25%,var(--paper) 0 50%,var(--ink) 0 75%,var(--paper) 0) 0 0/2px 2px;cursor:pointer}
+.pic{display:block;padding:12px 18px;background:var(--paper);border:2px solid var(--ink)}
+.sprite img{display:block;width:120px;height:300px;image-rendering:pixelated;animation:bob 1.1s steps(1) infinite}
+@keyframes bob{50%{transform:translateY(-3px)}}
+.say{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);width:max-content;max-width:150px;padding:8px 10px;background:var(--paper);color:var(--ink);border:2px solid var(--ink);border-radius:8px;box-shadow:2px 2px 0 var(--ink);font:600 15px/1.1 var(--pix);text-align:center}
+.intro{display:grid;align-content:center;padding:26px 24px}
+.ruled{border-block:2px solid var(--ink);padding:14px 0}
+h1{margin:0;font:700 clamp(48px,12vw,72px)/.95 var(--pix);letter-spacing:-.01em}
+.intro p{margin:18px 0 0;font-size:18px;line-height:1.5}
+.intro p span{display:block;text-wrap:balance}
+.intro p span+span{margin-top:8px}
+.strip{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.strip a{display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;padding:14px 8px;font:600 17px/1 var(--pix);text-decoration:none}
+.strip a:active,.go:active{--a:var(--ink);--b:var(--paper)}
+@media (hover:hover){.strip a:hover{--a:var(--ink);--b:var(--paper)}.go:hover{background:var(--paper);color:var(--ink)}}
+.grid{display:grid;gap:10px}
+.card{padding:22px 20px}
+.card h3{margin:0 0 6px;font:700 22px/1.2 var(--pix)}
+.card p{margin:0 0 18px}
+.go{display:inline-block;padding:10px 16px;border:2px solid var(--ink);border-radius:6px;background:var(--ink);color:var(--paper);font:600 16px/1 var(--pix);text-decoration:none}
+.go:active{background:var(--paper);color:var(--ink)}
+footer{color:var(--ink);font:400 15px var(--pix);opacity:.7}
+@media (min-width:640px){.strip{grid-template-columns:repeat(4,1fr)}.grid{grid-template-columns:1fr 1fr}}
+@media (min-width:720px){.body{grid-template-columns:auto 1fr}.strip{grid-column:1/-1}.sprite img{width:160px;height:400px}@keyframes bob{50%{transform:translateY(-4px)}}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.sprite img{animation:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="g" viewBox="0 0 24 24"><circle cx="6" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><circle cx="18" cy="9" r="2"/><path d="M6 7v10M18 11c0 4-6 3-12 6"/></symbol>
+<symbol id="m" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+<symbol id="i" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/></symbol>
+<symbol id="p" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10.5 18l1.6-7M9.2 11c-.5-2.5 1-4.3 3.2-4.3 2.2 0 3.3 1.6 3 3.4-.3 2-1.5 3.3-3 3.1-.8-.1-1.3-.7-1.4-1.2"/></symbol>
+</defs></svg>
+<div class="bezel" aria-hidden="true"></div>
+
+<main class="desk" id="top">
+ <section class="win">
+  <div class="tbar"><i class="close" aria-hidden="true"></i><h2 class="ttl">About Shady</h2></div>
+  <div class="body">
+   <div class="tile fig"><button class="sprite" id="fig" aria-label="Say hi to the pixel figure"><span class="pic"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAABkCAYAAAD0ZHJ6AAAAAXNSR0IArs4c6QAAAJxlWElmTU0AKgAAAAgABgEGAAMAAAABAAIAAAENAAIAAAAMAAAAVgEaAAUAAAABAAAAYgEbAAUAAAABAAAAagEoAAMAAAABAAIAAIdpAAQAAAABAAAAcgAAAABQaXhlbC1zaGFkeQAAAABIAAAAAQAAAEgAAAABAAOgAQADAAAAAQABAACgAgAEAAAAAQAAACigAwAEAAAAAQAAAGQAAAAAWaUHkQAAAAlwSFlzAAALEwAACxMBAJqcGAAAA95pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IlhNUCBDb3JlIDYuMC4wIj4KICAgPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4KICAgICAgPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIKICAgICAgICAgICAgeG1sbnM6dGlmZj0iaHR0cDovL25zLmFkb2JlLmNvbS90aWZmLzEuMC8iCiAgICAgICAgICAgIHhtbG5zOmRjPSJodHRwOi8vcHVybC5vcmcvZGMvZWxlbWVudHMvMS4xLyIKICAgICAgICAgICAgeG1sbnM6SXB0YzR4bXBFeHQ9Imh0dHA6Ly9pcHRjLm9yZy9zdGQvSXB0YzR4bXBFeHQvMjAwOC0wMi0yOS8iPgogICAgICAgICA8dGlmZjpEb2N1bWVudE5hbWU+UGl4ZWwtc2hhZHk8L3RpZmY6RG9jdW1lbnROYW1lPgogICAgICAgICA8dGlmZjpSZXNvbHV0aW9uVW5pdD4yPC90aWZmOlJlc29sdXRpb25Vbml0PgogICAgICAgICA8dGlmZjpDb21wcmVzc2lvbj41PC90aWZmOkNvbXByZXNzaW9uPgogICAgICAgICA8dGlmZjpYUmVzb2x1dGlvbj43MjwvdGlmZjpYUmVzb2x1dGlvbj4KICAgICAgICAgPHRpZmY6UGhvdG9tZXRyaWNJbnRlcnByZXRhdGlvbj4yPC90aWZmOlBob3RvbWV0cmljSW50ZXJwcmV0YXRpb24+CiAgICAgICAgIDx0aWZmOllSZXNvbHV0aW9uPjcyPC90aWZmOllSZXNvbHV0aW9uPgogICAgICAgICA8ZGM6dGl0bGU+CiAgICAgICAgICAgIDxyZGY6QWx0PgogICAgICAgICAgICAgICA8cmRmOmxpIHhtbDpsYW5nPSJ4LWRlZmF1bHQiPlBpeGVsLXNoYWR5PC9yZGY6bGk+CiAgICAgICAgICAgIDwvcmRmOkFsdD4KICAgICAgICAgPC9kYzp0aXRsZT4KICAgICAgICAgPElwdGM0eG1wRXh0OkFydHdvcmtUaXRsZT5QaXhlbC1zaGFkeTwvSXB0YzR4bXBFeHQ6QXJ0d29ya1RpdGxlPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KKfECgwAAA1FJREFUaAXtmMlyHCEMhjMpn3Ly+z+lT7mOEUGUUEughVmcYqpcbFo+fsF0e26/9nzuSpibMm+ezgTQoKTk4Ty/pWgPmPNsZkgf2Vk4WcnszvcsBQdVPAPvjjLqIZcr59sr+ApAVxU8gK7AWM9s6wHM5gr5pwG//n6piWdrqhNbCAPS5NDXxnSe5d4+hDOo/hWQuobtzNZD5vpOaklrfFDm889nV472wYCOoU8+rpyhEmPZsCXJe5eu0X43MHZCgFJsI4RLPcjjBawJWMkk3mHOa0+dvYDg61ahJQz5hZxawjstK1VJmA/nCTsWyProozANvDcEOpwnUuIOAB0CYZofjAyD8M5a7KriJE82fvjAcybpPKbhIEm6xJx09zizy15e6aKwsxnO8xHYcQdz+FIfF6y3xD0RVY2pNdxsatc21GM4Nrg0haCXv5L8MkftFuvLpFaDEMQCDmMuGSznAYJNP0IZhzJPnJf5lwYl+BJwArBaWuZfGTwSDuGnDN5bjEGf1roApbPmIY34uwA9MLtsfzTgMy4ICD3N86MV3HWMUnE0BaeypzLKzmo+DVAO84LZA0hF5++NdE3ra89B9UxogTbMiyynxFllj4JHwawCWf9zBrMKSl+Or/iSxn1ceE6JUZpoexSMKod+kd8H0Tfc8v+P22sYvSBwUetYAoSF4TdnIIm8y4Ff9iMBqjH5zrkhbMJiw/1mY+2S3J6lmFDegVcDBKOHQ05E6OdxVWKA3P5kIWD1vBcx+qUY5CuDmYJoC0H6jnAy2a5idlFWCiY5TO5URXTogrwDIEB1ICTE1lJisO2So2OyNcezAiZ54u4HMK7dP8+j4FEwq0DW33wGV69RWRDN3wyoBfDOezdqAby8XXuhuH2DND1NLIA8/mVMXp/qGh9fHBwTWwAd+dym/z8glJMffBjvKnNKQQkOa7gLUn1RxESl3X6LIXZTeJk/pSDZRO3uKiuNuxWQBt7VNwHuVsYTzwK4PCdBtUxxLYA1v2fXM2BvHDPgLOkj194e0HQOikKmNw+nkqbcu35ZkJJt2ZQbkD93pUNfbO4wb7FdqZ4+gw1iUEuCW4Fo62YFuRpawNk8xpBU1/yks6PZDioxIymO156FPMOjwHso8A2i0QoSIAWhngAAAABJRU5ErkJggg==" alt="Pixel art figure of Shady"></span></button><div class="say" id="say" hidden></div></div>
+   <div class="tile intro">
+    <div class="ruled"><h1>Shady</h1></div>
+    <p><span>Hello, world. I’m a self-taught dev.</span><span>I don’t know half of the code I’m writing.</span></p>
+   </div>
+   <nav class="strip" aria-label="Social">
+    <a class="tile" href="https://github.com/perfectsadi" target="_blank" rel="noopener"><svg class="ic"><use href="#g"/></svg>GitHub</a>
+    <a class="tile" href="https://www.instagram.com/perfectlysady" target="_blank" rel="noopener"><svg class="ic"><use href="#i"/></svg>Instagram</a>
+    <a class="tile" href="https://www.pinterest.com/perfectlysady" target="_blank" rel="noopener"><svg class="ic"><use href="#p"/></svg>Pinterest</a>
+    <a class="tile" href="mailto:perfectsadi@icloud.com"><svg class="ic"><use href="#m"/></svg>Mail</a>
+   </nav>
+  </div>
+ </section>
+
+ <section class="win" id="repos" aria-labelledby="repos-t">
+  <div class="tbar"><i class="close" aria-hidden="true"></i><h2 class="ttl" id="repos-t">Git Repository</h2></div>
+  <div class="body"><div class="grid">
+   <article class="tile card"><h3>Runner.py</h3><p>Luffy running game using basic pygame library.</p><a class="go" href="https://github.com/perfectsadi" target="_blank" rel="noopener">Open repo</a></article>
+   <article class="tile card"><h3>My Dot Files</h3><p>My customized grey themed dot files.</p><a class="go" href="https://github.com/perfectsadi/my-dot-fil3" target="_blank" rel="noopener">Open repo</a></article>
+   <article class="tile card"><h3>Jarvis</h3><p>Basic assistant for windows and Linux.</p><a class="go" href="https://github.com/perfectsadi/jarvis" target="_blank" rel="noopener">Open repo</a></article>
+   <article class="tile card"><h3>Terminal Spotify</h3><p>Use Spotify in the terminal.</p><a class="go" href="https://github.com/perfectsadi/lazyspotify" target="_blank" rel="noopener">Open repo</a></article>
+  </div></div>
+ </section>
+ <footer>© 2026 Shady</footer>
+</main>
+
+<script>
+const $=s=>document.querySelector(s);
+const say=$('#say'),L=['yo','hey homie','you found me','what’s up','check the repos'];let tm;
+$('#fig').onclick=()=>{say.textContent=L[Math.floor(Math.random()*L.length)];say.hidden=false;clearTimeout(tm);tm=setTimeout(()=>{say.hidden=true},1800)};
+</script>
+</body>
+</html>
